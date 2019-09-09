@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face{
+  font-family: syncopate;
+  src: url(assets/Syncopate/Syncopate-Regular.ttf) format("truetype");
+}
+
+.syncopate{
+  font-family: syncopate;
+}
+
+.bg-black{
+  background-color: black;
+}
+
+#waveform{
+  width: 75%;
+  max-height: 75px;
+}
+
+.text-white{
+  color: white;
+}
