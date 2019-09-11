@@ -1,33 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }    from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { AppViewComponent } from './app-view/app-view.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MemoriesComponent } from './component/memories/memories.component';
+import { AuthComponent } from './component/auth/auth.component';
+import { AppsComponent } from './component/apps/apps.component';
 
-/*const appRoutes: Routes = [
-  { path: '', component: root },
-  { path: 'apps', component: appView },
-  { path: 'memories', component: memories },
-  { path: '**', component: PageNotFoundComponent }
-];*/
-
-const appRoutes: Routes = [
-  //{ path: '', redirectTo: '/app-view', pathMatch: 'full' },
-  //{ path: 'app-view', component: AppViewComponent }
-];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent,
+    MemoriesComponent,
+    AppsComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    NoopAnimationsModule
   ],
-  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })
