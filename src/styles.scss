@@ -34,13 +34,15 @@ $MILHOUSE-theme: mat-light-theme($MILHOUSE-primary, $MILHOUSE-accent, $MILHOUSE-
 
 body{
   background-color: black !important;
+  width: 100%;
 }
 
 #title{
   top: 10px;
-  width: 100%;
-
-  position: absolute;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .syncopate{
@@ -74,6 +76,7 @@ body{
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 15%;
   display: block;
 }
 

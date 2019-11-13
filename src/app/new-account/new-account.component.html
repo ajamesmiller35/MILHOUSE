@@ -1,5 +1,5 @@
-<form id="sign-on">
-  <h2 class="syncopate text-center text-white">Sign In:</h2>
+<form id="create-new-account">
+  <h2 class="syncopate text-center text-white">Create New Account:</h2>
   <div id="bad-login" class="alert alert-danger" role="alert">
       Username or password incorrect!
   </div>
@@ -11,9 +11,10 @@
     <label class="syncopate text-white control-label" for="sign-in-password">Password</label>
     <input #password type="password" class="form-control" id="sign-in-password" placeholder="Password">
   </div>
-  <!--<button (click)="login(email.value, password.value)" id="sign-in-button" type="submit" class="btn btn-secondary">Sign In</button>-->
-  <button onclick="window.location.href='/memories'" id="sign-in-button" type="submit" class="btn btn-secondary">Sign In</button>
+  <div class="form-group">
+    <label class="syncopate text-white control-label" for="sign-in-password">Confirm Password</label>
+    <input #password type="password" class="form-control" id="sign-in-password" placeholder="Password">
+  </div>
+  <button (click)="newAccount(email.value, password.value)" id="sign-in-button" type="submit" class="btn btn-secondary">Sign In</button>
 
-  <h3 class="syncopate text-white">No Account?</h3>
-  <button onclick="window.location.href='/new-account'" id="new-account-button" class="btn btn-secondary">Create New Account</button>
 </form>

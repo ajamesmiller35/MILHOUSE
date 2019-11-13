@@ -5,13 +5,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { MemoriesComponent } from './component/memories/memories.component';
 import { AppsComponent } from './component/apps/apps.component';
 import { AuthComponent } from './component/auth/auth.component';
+import { NewAccountComponent } from './new-account/new-account.component';
+import { ErrorComponent } from './error/error.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: './component/auth', pathMatch: 'full' },
-  { path: './component/auth', component: AuthComponent },
-  { path: './component/auth', component: AppsComponent},
-  { path: './component/memories', component: MemoriesComponent},
+  //{ path: '', redirectTo: './component/auth', pathMatch: 'full' },
+  //{ path: './component/auth', component: AuthComponent },
+  { path: 'auth', component: AuthComponent},
+  { path: 'new-account', component: NewAccountComponent},
+  { path: 'memories', component: MemoriesComponent },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '**', component: ErrorComponent }
 ];
 
 @NgModule({

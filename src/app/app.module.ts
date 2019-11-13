@@ -8,6 +8,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MemoriesComponent } from './component/memories/memories.component';
 import { AuthComponent } from './component/auth/auth.component';
 import { AppsComponent } from './component/apps/apps.component';
+import { NewAccountComponent } from './new-account/new-account.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { AppsComponent } from './component/apps/apps.component';
     AppComponent,
     AuthComponent,
     MemoriesComponent,
-    AppsComponent
+    AppsComponent,
+    NewAccountComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
