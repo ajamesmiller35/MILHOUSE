@@ -37,14 +37,6 @@ body{
   width: 100%;
 }
 
-#title{
-  top: 10px;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
 .syncopate{
   font-family: syncopate;
 }
@@ -53,13 +45,6 @@ body{
   background-color: black;
 }
 
-#waveform{
-  width: 95%;
-  max-height: 50px;
-  position: absolute;
-  right: 2.5%;
-  top: 50px;
-}
 
 #location{
   position: relative;
@@ -70,18 +55,6 @@ body{
 
 .text-white{
   color: white;
-}
-
-#sign-on{
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15%;
-  display: block;
-}
-
-#bad-login{
-  display: none;
 }
 
 html, body { height: 100%; }

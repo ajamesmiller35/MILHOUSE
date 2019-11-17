@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MemoriesComponent } from './component/memories/memories.component';
 import { AppsComponent } from './component/apps/apps.component';
 import { AuthComponent } from './component/auth/auth.component';
-import { NewAccountComponent } from './new-account/new-account.component';
+import { NewAccountComponent } from './component/new-account/new-account.component';
 import { ErrorComponent } from './error/error.component';
 
 
