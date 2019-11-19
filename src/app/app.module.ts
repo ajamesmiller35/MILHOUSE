@@ -11,6 +11,7 @@ import { AuthComponent } from './component/auth/auth.component';
 import { AppsComponent } from './component/apps/apps.component';
 import { NewAccountComponent } from './component/new-account/new-account.component';
 import { ErrorComponent } from './error/error.component';
+import { ListsComponent } from './component/lists/lists.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ErrorComponent } from './error/error.component';
     MemoriesComponent,
     AppsComponent,
     NewAccountComponent,
-    ErrorComponent
+    ErrorComponent,
+    ListsComponent
   ],
   imports: [
     BrowserModule,

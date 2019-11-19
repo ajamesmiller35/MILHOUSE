@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Location} from '@angular/common';
 import * as $ from 'jquery';
 
 @Component({
@@ -9,6 +10,12 @@ import * as $ from 'jquery';
 
 export class AppComponent {
   title = 'MILHOUSE';
+
+  constructor(private _location: Location) {}
+
+  goBack() {
+    this._location.back();
+  }
 
   ngOnInit() {
     var push = $('nav').height();

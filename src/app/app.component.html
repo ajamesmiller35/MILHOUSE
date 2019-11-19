@@ -14,9 +14,9 @@
           </button>
       <img id="waveform" src="../assets/images/waveform.png">
       <mat-menu id="mat-menu" #appMenu="matMenu">
-          <button class="menu-button" mat-menu-item>Lists</button>
-          <button class="menu-button" mat-menu-item>Memories</button>
-          <button onclick="window.location.href='/login'" class="menu-button" mat-menu-item>Log Out</button>
+          <button routerLink="/lists" class="menu-button" mat-menu-item>Lists</button>
+          <button routerLink="/memories" class="menu-button" mat-menu-item>Memories</button>
+          <button onclick="window.location.href='/auth'" class="menu-button" mat-menu-item>Log Out</button>
       </mat-menu>
       <button class="apps-button" mat-icon-button [matMenuTriggerFor]="appMenu">
         <mat-icon>apps</mat-icon>

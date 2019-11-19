@@ -7,6 +7,7 @@ import { AppsComponent } from './component/apps/apps.component';
 import { AuthComponent } from './component/auth/auth.component';
 import { NewAccountComponent } from './component/new-account/new-account.component';
 import { ErrorComponent } from './error/error.component';
+import { ListsComponent } from './component/lists/lists.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent},
   { path: 'new-account', component: NewAccountComponent},
   { path: 'memories', component: MemoriesComponent },
+  { path: 'lists', component: ListsComponent },
+  { path: 'lists/:id', component: ListsComponent },
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: '**', component: ErrorComponent }
 ];
