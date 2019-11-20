@@ -18,3 +18,55 @@ li{
 .grey{
     background-color: #191221;
 }
+
+#add{
+  color: white;
+  font-size: 2em;
+  float: left;
+  padding-top: .15em;
+}
+
+.new-list{
+  padding-top: .5em;
+  display: block;
+}
+
+#remove{
+  display: none;
+  color: white;
+  font-size: 2em;
+  float: left;
+  padding-top: .15em;
+}
+
+.divider{
+  height: 1px;
+  width: 100%;
+  background-color: white;
+  margin-top: .25em;
+}
+
+.add-list{
+  display: none;
+}
+
+#add-list-button{
+  width: 250px;
+  background-color: darkslategrey;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.new-list-item-box{
+  width: 100%;
+  background-color: #191221;
+  min-height: 250px;
+}
+
+.new-list-title-box{
+  width: 100%;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { List } from './list';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-lists',
@@ -27,7 +28,7 @@ export class ListsComponent implements OnInit {
     lists.push({'id': 1, 'name': 'Groceries'});
     lists.push({'id': 2, 'name': 'Hardware'});
     lists.push({'id': 3, 'name': 'Pharmacy'});
-    
+
     console.log(lists);
     this.lists = lists;
 
@@ -41,6 +42,18 @@ export class ListsComponent implements OnInit {
 
     this.route.params.subscribe(routeParams => {
       this.id = routeParams.id;
+
+      $('#add').on('click', function(){
+        $('.add-list').css('display','block');
+        $('#add').css('display', 'none');
+        $('#remove').css('display', 'block');
+      });
+
+      $('#remove').on('click', function(){
+        $('.add-list').css('display','none');
+        $('#remove').css('display', 'none');
+        $('#add').css('display', 'block');
+      });
     });
 
   }
