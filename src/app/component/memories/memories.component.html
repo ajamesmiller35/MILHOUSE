@@ -1,13 +1,41 @@
 <h1 class="text-center text-white syncopate">Memories</h1>
 
 <div class="memory container">
-  <h3 class="memory-title text-white text-center syncopate">Memory Title - Date</h3>
-  <div class="row">
-    <div class="col-lg-6">
-      <img class="memory-img" src="../../../assets/images/florida.jpg" alt="">
-    </div><!--col-lg-6-->
-    <div class="col-lg-6">
-      <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus luctus in elit sed commodo. Phasellus eget fermentum ante. Integer pharetra tortor in mi tempus, id convallis quam rutrum. Donec quis justo nulla. Vivamus nec auctor lectus. Cras volutpat orci sit amet leo fringilla, ultricies auctor risus sagittis. Aenean convallis et dolor non mollis. Nulla faucibus nibh eget laoreet tempus.</p>
-    </div><!--col-lg-6-->
-  </div><!--row-->
+  <div class="divider"></div>
+    <mat-icon id="add">add</mat-icon><mat-icon id="remove">remove</mat-icon> <h5 class="text-white text-center syncopate new-mem">New Memory</h5>
+    <div class="add-memory">
+      <div class="memory-title-box">
+        <h3 contenteditable="true" class="memory-title text-white text-center syncopate">Memory Title</h3><h3 class="memory-title text-white text-center syncopate"> - </h3><h3 contenteditable="true" class="memory-title text-white text-center syncopate">Date</h3>
+      </div><!--memory-title-box-->
+        <div class="row">
+          <div class="col-lg-6">
+            <img id="new-image" class="memory-img" src="" alt="">
+            <div class="add-img-box">
+              <mat-icon id="add-photo">add_circle</mat-icon>
+            </div><!--add-img-box-->
+          </div><!--col-lg-6-->
+          <div class="col-lg-6">
+            <p contenteditable="true" class="text-white">Add memory details here.</p>
+          </div><!--col-lg-6-->
+        </div><!--row-->
+        <div class="row">
+          <div class="col-lg-12">
+            <button class="btn" id="add-memory-button">Add Memory</button>
+          </div>
+        </div>
+    </div><!--add-memory-->
+  <div class="divider"></div>
+  <div class="memory">
+      <div class="memory-title-box">
+        <h3 class="memory-title text-white text-center syncopate">Memory Title</h3><h3 class="memory-title text-white text-center syncopate"> - </h3><h3 class="memory-title text-white text-center syncopate">Date</h3>
+      </div><!--memory-title-box-->
+        <div class="row">
+          <div class="col-lg-6">
+            <img class="memory-img" src="../../../assets/images/florida.jpg" alt="">
+          </div><!--col-lg-6-->
+          <div class="col-lg-6">
+            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus luctus in elit sed commodo. Phasellus eget fermentum ante. Integer pharetra tortor in mi tempus, id convallis quam rutrum. Donec quis justo nulla. Vivamus nec auctor lectus. Cras volutpat orci sit amet leo fringilla, ultricies auctor risus sagittis. Aenean convallis et dolor non mollis. Nulla faucibus nibh eget laoreet tempus.</p>
+          </div><!--col-lg-6-->
+        </div><!--row-->
+    </div><!--memory-->
 </div><!--container-->

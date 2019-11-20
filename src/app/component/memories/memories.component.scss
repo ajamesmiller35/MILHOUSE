@@ -3,5 +3,74 @@
 }
 
 .memory-title{
-  padding-top: 25px;
+  display: inline;
+}
+
+.memory-title-box{
+  padding-top: .25em;
+  padding-bottom: .25em;
+  text-align: center;
+}
+
+#add{
+  color: white;
+  font-size: 2em;
+  float: left;
+  padding-top: .15em;
+}
+
+#remove{
+  display: none;
+  color: white;
+  font-size: 2em;
+  float: left;
+  padding-top: .15em;
+}
+
+.divider{
+  height: 1px;
+  width: 100%;
+  background-color: white;
+  margin-top: .25em;
+}
+
+.new-mem{
+  padding-top: .5em;
+}
+
+.add-memory{
+  display: none;
+}
+
+#new-image{
+  display: none;
+}
+
+#add-photo{
+  text-align: center;
+  display: block !important;
+  color: white;
+  font-size: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  height: unset;
+  width: unset;
+}
+
+.add-img-box{
+  width: 100%;
+  height: 280px;
+  background-color: #191221;
+}
+
+#add-memory-button{
+  width: 250px;
+  background-color: darkslategrey;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
