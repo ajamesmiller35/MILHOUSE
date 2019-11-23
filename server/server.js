@@ -1,23 +1,35 @@
 const express = require('express');
 const mongo = require('mongodb');
-
 const app = express();
-const MongoClient = mongo.MongoClient;
+const memoryRouter = express.Router();
+const mongoose = require('mongoose');
 
-const url = 'mongodb://localhost:27017';
 
-var collections;
+const url = 'mongodb://localhost:27017/MILHOUSE';
+const db = mongoose.connect(url);
+
+const Memory = require('./memoryModel');
+
+memoryRouter.route('/memories/:memoryID').get((req, res) => {
+  console.log(req.params);
+  Memory.find((error, memories) => {
+    if(error){
+      return res.send(error);
+    }
+    return res.json(memories);
+  });
+});
+
+app.use('/api', memoryRouter);
 
 app.listen(3000, () => {
   console.log( 'server started' );
 
-console.log('querytest START!');
-
-MongoClient.connect(url, { useNewUrlParser: true }, { useUnifiedTopology: true }, (err, client) => {
+{/*MongoClient.connect(url, { useNewUrlParser: true }, { useUnifiedTopology: true }, (err, client) => {
 
     if (err) throw err;
 
-    const db = client.db("milhouse");
+    const db = client.db("MILHOUSE");
 
     db.listCollections().toArray().then((docs) => {
 
@@ -35,9 +47,12 @@ MongoClient.connect(url, { useNewUrlParser: true }, { useUnifiedTopology: true }
 });
 
 app.route('/collections').get((req, res) => {
+  console.log(req.params);
   res.send({
     collections: [{ collections }],
   })
-})
+})*/}
 
-})
+
+
+});
