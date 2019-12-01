@@ -1,1 +1,11 @@
-http://localhost:3000/api/memories/123456
+//http://localhost:3000/api/memories/123456
+
+//POST http://localhost:3000/api/users
+//Content-Type: application/json
+
+//{
+    //"username": "andrew",
+    //"password": "Sigma19231."
+//}
+
+http://localhost:3000/api/memories

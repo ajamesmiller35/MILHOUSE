@@ -5,14 +5,14 @@
   </div>
   <div class="form-group">
     <label class="syncopate text-white control-label" for="sign-in-email">Email address</label>
-    <input #email type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
+    <input #username type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
   <div class="form-group">
     <label class="syncopate text-white control-label" for="sign-in-password">Password</label>
     <input #password type="password" class="form-control" id="sign-in-password" placeholder="Password">
   </div>
-  <!--<button (click)="login(email.value, password.value)" id="sign-in-button" type="submit" class="btn btn-secondary">Sign In</button>-->
-  <button onclick="window.location.href='/memories'" id="sign-in-button" type="submit" class="btn btn-secondary">Sign In</button>
+  <button (click)="login(username.value, password.value)" id="sign-in-button" type="submit" class="btn btn-secondary">Sign In</button>
+  <!--<button onclick="window.location.href='/memories'" id="sign-in-button" type="submit" class="btn btn-secondary">Sign In</button>-->
 
   <h3 class="syncopate text-white">No Account?</h3>
   <button onclick="window.location.href='/new-account'" id="new-account-button" class="btn btn-secondary">Create New Account</button>
