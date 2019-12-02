@@ -13,6 +13,7 @@ const db = mongoose.connect(url);
 
 const Memory = require('./memoryModel');
 const User = require('./userModel');
+const List = require('./listModel');
 
 app.use(cors());
 app.use(fileUpload());

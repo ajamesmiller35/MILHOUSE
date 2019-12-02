@@ -3,6 +3,8 @@ import { List } from './list';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import * as $ from 'jquery';
+import { getCookie } from '../../../assets/scripts/getCookie';
+import { eraseContent } from '../../../assets/scripts/eraseContent';
 
 @Component({
   selector: 'app-lists',
@@ -14,6 +16,8 @@ export class ListsComponent implements OnInit {
   lists: List[];
   @Input()
   id: string;
+  userID: string;
+  username: string;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -22,7 +26,30 @@ export class ListsComponent implements OnInit {
     console.log(this.id);
   }*/
 
+  delete(id){
+    console.log("DELETE: " + id);
+  }
+
+  addList(){
+    let title = $('#new-list-title').html();
+    let items = $('#new-list-items').text();
+
+    console.log(title);
+    console.log(items);
+  }
+
+  appendNext(){
+    let children = $('#new-list-item-box').length + 1;
+    $('.new-list-item-box').append(`<h6 contenteditable="true" style="padding-top:10px; padding-bottom:10px;" (click)="console.log('test')" class="new-list-item syncopate text-white" id="` + children + `">New List Items</h6>`);
+  }
+
   ngOnInit() {
+    eraseContent();
+    if(getCookie('userID')){
+      this.username = getCookie('username');
+      this.userID = getCookie('userID');
+    }
+
     var lists = new Array();
 
     lists.push({'id': 1, 'name': 'Groceries'});

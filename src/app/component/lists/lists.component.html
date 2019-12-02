@@ -1,10 +1,11 @@
+<p class="text-white syncopate" id="userID">Welcome {{username}}</p>
 <h1 class="text-center text-white syncopate">Shopping Lists</h1>
 
 <div class="container">
   <div class="divider"></div>
     <div class="row">
       <div class="col-lg-12">
-          <mat-icon id="add">add</mat-icon><mat-icon id="remove">remove</mat-icon> <h5 class="text-white text-center syncopate new-list">New Memory</h5>
+          <mat-icon id="add">add</mat-icon><mat-icon id="remove">remove</mat-icon> <h5 class="text-white text-center syncopate new-list">New List</h5>
       </div><!--col-lg-12-->
     </div><!--row-->
     <div class="add-list">
@@ -16,13 +17,14 @@
         </div><!--col-lg--6-->
         <div class="col-lg-6">
           <div class="new-list-item-box">
-            <h6 contenteditable="true" class="syncopate text-white" id="new-list-title">New List Items</h6>
+            <h6 contenteditable="true" class="new-list-item syncopate text-white" id="1">New List Items</h6>
+            <button (click)="appendNext()" class="btn" id="add-item-button"><p id="plus">+</p></button>
           </div><!--new-list-item-box-->
         </div><!--col-lg--6-->
       </div><!--row-->
       <div class="row">
           <div class="col-lg-12">
-            <button class="btn" id="add-list-button">Add Memory</button>
+            <button (click)="addList()" class="btn" id="add-list-button">Add List</button>
           </div>
         </div>
     </div><!--add-list-->
@@ -37,7 +39,7 @@
                     <h3 class="text-white list-title syncopate">{{list.name}}</h3>
                   </a>
                   <button class="delete" title="delete list"
-                    (click)="delete(list)">x</button>
+                    (click)=delete(list.id)>x</button>
                 </li>
               </ul>
         </div>
