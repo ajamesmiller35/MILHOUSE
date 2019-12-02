@@ -144,6 +144,40 @@ memoryRouter.route('/users').post((req, res) => {
  
 });
 
+memoryRouter.route('/users/newuser').post((req, res) => {
+  //console.log(req);
+  console.log(req.body);
+  let uname = req.body.username;
+  let pword = req.body.password;
+  var query = User.findOne({ 'username': uname });
+
+  // selecting the `name` and `occupation` fields
+  query.select('username password');
+
+  // execute the query at a later time
+    query.exec(function (err, users) {
+      if (err) return handleError(err);
+      
+      if(users != null){
+          return res.json('User already exists.');
+      }
+      else{
+        console.log('NEW USER: NOT TAKEN');
+        let newUser = new User();
+        newUser.username = uname;
+        newUser.password = pword;
+        console.log(newUser);
+        newUser.save(function (err, user) {
+          if (err) return console.error(err);
+          console.log(user.username + " saved to memories.");
+          return res.json(user);
+        });
+      }
+      //console.log('found: ', users.username, users.password);
+    });
+ 
+});
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({
   extended: true

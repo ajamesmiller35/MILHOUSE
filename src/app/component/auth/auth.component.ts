@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
-import { setCookie } from '../../../assets/scripts/setCookie'
+import { setCookie } from '../../../assets/scripts/setCookie';
 
 @Component({
   selector: 'app-auth',
