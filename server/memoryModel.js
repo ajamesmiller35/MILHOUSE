@@ -7,7 +7,8 @@ const memoryModel = new Schema({
     date: { type: String },
     img: { type: String },
     creator: { type: String },
-    description: { type: String }
+    description: { type: String },
+    number: { type: Number }
 });
 
 module.exports = mongoose.model('Memory', memoryModel);

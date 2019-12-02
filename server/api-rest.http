@@ -8,4 +8,4 @@
     //"password": "Sigma19231."
 //}
 
-http://localhost:3000/api/memories
+POST http://localhost:3000/api/upload

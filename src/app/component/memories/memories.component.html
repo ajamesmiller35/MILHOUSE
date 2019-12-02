@@ -6,22 +6,28 @@
     <mat-icon id="add">add</mat-icon><mat-icon id="remove">remove</mat-icon> <h5 class="text-white text-center syncopate new-mem">New Memory</h5>
     <div class="add-memory">
       <div class="memory-title-box">
-        <h3 contenteditable="true" class="memory-title text-white text-center syncopate">Memory Title</h3><h3 class="memory-title text-white text-center syncopate"> - </h3><h3 contenteditable="true" class="memory-title text-white text-center syncopate">Date</h3>
+        <h3 id="nm-title" contenteditable="true" class="memory-title text-white text-center syncopate">Memory Title</h3><h3 class="memory-title text-white text-center syncopate"> - </h3><h3 id="nm-date" contenteditable="true" class="memory-title text-white text-center syncopate">Date</h3>
       </div><!--memory-title-box-->
         <div class="row">
           <div class="col-lg-6">
             <img id="new-image" class="memory-img" src="" alt="">
+            <div class="new-image"></div>
             <div class="add-img-box">
-              <mat-icon id="add-photo">add_circle</mat-icon>
+              <form id="upload-form" action="http://localhost:3000/api/upload" method="post" enctype="multipart/form-data">
+                  Select an image to upload: <br>
+                  <input type="file" name="memory" id="upload-input" (change)="onFileSelected($event)"> <br>
+                  <!--<input type="submit" value="Upload Image" name="submit">-->
+              </form>
+              <mat-icon (click)="triggerInput()" id="add-photo">add_circle</mat-icon>
             </div><!--add-img-box-->
           </div><!--col-lg-6-->
           <div class="col-lg-6">
-            <p contenteditable="true" class="text-white">Add memory details here.</p>
+            <p id="nm-details" contenteditable="true" class="text-white">Add memory details here.</p>
           </div><!--col-lg-6-->
         </div><!--row-->
         <div class="row">
           <div class="col-lg-12">
-            <button class="btn" id="add-memory-button">Add Memory</button>
+            <button (click)="addMemory()" class="btn" id="add-memory-button">Add Memory</button>
           </div>
         </div>
     </div><!--add-memory-->
@@ -39,4 +45,9 @@
         </div>
       </div>-->
   </div><!--memory-->
+  <div class="row">
+    <div class="col-lg-12">
+      <button (click)="getMemories()" class="btn" id="more-memories-button">Get More Memories</button>
+    </div><!--col-lg-12-->
+  </div><!--row-->
 </div><!--container-->

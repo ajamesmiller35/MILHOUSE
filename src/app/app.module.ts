@@ -12,6 +12,7 @@ import { AppsComponent } from './component/apps/apps.component';
 import { NewAccountComponent } from './component/new-account/new-account.component';
 import { ErrorComponent } from './error/error.component';
 import { ListsComponent } from './component/lists/lists.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ListsComponent } from './component/lists/lists.component';
     FormsModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

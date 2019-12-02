@@ -5,6 +5,7 @@ const cors = require('cors');
 const memoryRouter = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 
 const url = 'mongodb://localhost:27017/MILHOUSE';
@@ -14,6 +15,7 @@ const Memory = require('./memoryModel');
 const User = require('./userModel');
 
 app.use(cors());
+app.use(fileUpload());
 
 /*memoryRouter.route('/memories/:memoryID').get((req, res) => {
   console.log(req.params);
@@ -25,14 +27,89 @@ app.use(cors());
   });
 });*/
 
-memoryRouter.route('/memories').get((req, res) => {
-  console.log(req.params);
+memoryRouter.route('/upload').post((req, res) => {
+  console.log('UPLOAD');
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  console.log(req.files.image);
+
+  let image = req.files.image;
+  let path = '../src/assets/images/' + image.name;
+
+  image.mv(path, function(err) {
+    if (err)
+      return res.status(500).send(err);
+
+    res.send('File uploaded!');
+  });
+
+});
+
+memoryRouter.route('/memories').post((req, res) => {
+  /*console.log(req.body);
   Memory.find((error, memories) => {
     if(error){
       return res.send(error);
     }
     return res.json(memories);
+  }).limit(1);*/
+  let num = Number(req.body.number);
+  
+  console.log('START NUM' + num);
+  let query = Memory.find({
+    'number': {
+      $in: [
+        num,
+        num - 1,
+        num - 2
+      ]}
   });
+
+  query.select();
+
+  query.exec(function (err, memories) {
+    if (err) return handleError(err);
+
+    if(memories != null){
+      console.log(memories);
+        return res.json(memories);
+      
+    }
+  });
+
+
+});
+
+memoryRouter.route('/memories/largest').get((req, res) => {
+  
+  let query = Memory.findOne().sort('-number');
+
+  query.exec(function (err, largest) {
+    if (err) return handleError(err);
+
+    if(largest != null){
+      console.log(largest);
+        return res.json(largest);
+    }
+  });
+
+
+});
+
+memoryRouter.route('/memories/add').post((req, res) => {
+  
+  console.log(req.body);
+
+  var newMemory = new Memory(req.body);
+
+  newMemory.save(function (err, memory) {
+    if (err) return console.error(err);
+    console.log(memory.title + " saved to memories.");
+  });
+
 });
 
 memoryRouter.route('/users').post((req, res) => {
