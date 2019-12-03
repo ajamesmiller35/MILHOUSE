@@ -179,6 +179,62 @@ memoryRouter.route('/users/newuser').post((req, res) => {
  
 });
 
+memoryRouter.route('/lists').post((req, res) => {
+  
+  console.log(req.body);
+
+  var query = List.find();
+
+  query.select();
+
+    query.exec(function (err, lists) {
+      if (err) return handleError(err);
+      
+      if(lists != null){
+        return res.json(lists);
+      }
+      else{
+        console.log('NO LISTS FOUND');
+        return res.json({'message': 'No Lists Found'});
+        }
+      });
+});
+
+memoryRouter.route('/lists/items').post((req, res) => {
+  
+  console.log(req.body);
+
+  var query = List.find({ _id: req.body.id});
+
+  query.select();
+
+    query.exec(function (err, items) {
+      if (err) return handleError(err);
+      
+      if(items != null){
+        return res.json(items);
+      }
+      else{
+        console.log('NO ITEMS FOUND');
+        return res.json({'message': 'No Items Found'});
+        }
+      });
+});
+
+memoryRouter.route('/lists/newlist').post((req, res) => {
+  //console.log(req);
+  console.log(req.body);
+
+  var newList = new List(req.body);
+
+  newList.save(function (err, list) {
+    if (err) return console.error(err);
+    console.log(list.title + " saved to memories.");
+    return res.json(list);
+  });  
+ 
+});
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({
   extended: true
