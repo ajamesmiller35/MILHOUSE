@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Location} from '@angular/common';
 import * as $ from 'jquery';
+import { getCookie } from '../assets/scripts/getCookie';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,11 @@ export class AppComponent {
 
   goBack() {
     this._location.back();
+  }
+
+  logOut() {
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    window.location.href="/auth"
   }
 
   ngOnInit() {

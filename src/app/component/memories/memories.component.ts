@@ -27,7 +27,7 @@ export class MemoriesComponent implements OnInit {
   onFileSelected(event){
     this.selectedFile = <File>event.target.files[0];
     console.log(this.selectedFile);
-    this.fileName = this.selectedFile.name; 
+    this.fileName = this.selectedFile.name;
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name)
     this.http.post('http://localhost:3000/api/upload', fd, {responseType: 'text'})
@@ -73,12 +73,12 @@ export class MemoriesComponent implements OnInit {
           console.log('SUCCESS');
         }
       });
-    }); 
+    });
 
   }
 
   getLargest(){
-    
+
   }
 
   getMemories(){
@@ -152,9 +152,17 @@ export class MemoriesComponent implements OnInit {
 
     }
 
+    checkStatus(){
+      if(!getCookie('userID')){
+        window.location.href = "/auth";
+      }
+    }
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+
+    this.checkStatus();
 
     $('#add').on('click', function(){
       $('.add-memory').css('display','block');
@@ -174,7 +182,7 @@ export class MemoriesComponent implements OnInit {
     }
 
     this.getMemories();
-    
+
   }
 
 }

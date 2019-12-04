@@ -58,7 +58,7 @@ memoryRouter.route('/memories').post((req, res) => {
     return res.json(memories);
   }).limit(1);*/
   let num = Number(req.body.number);
-  
+
   console.log('START NUM' + num);
   let query = Memory.find({
     'number': {
@@ -77,7 +77,7 @@ memoryRouter.route('/memories').post((req, res) => {
     if(memories != null){
       console.log(memories);
         return res.json(memories);
-      
+
     }
   });
 
@@ -85,7 +85,7 @@ memoryRouter.route('/memories').post((req, res) => {
 });
 
 memoryRouter.route('/memories/largest').get((req, res) => {
-  
+
   let query = Memory.findOne().sort('-number');
 
   query.exec(function (err, largest) {
@@ -101,7 +101,7 @@ memoryRouter.route('/memories/largest').get((req, res) => {
 });
 
 memoryRouter.route('/memories/add').post((req, res) => {
-  
+
   console.log(req.body);
 
   var newMemory = new Memory(req.body);
@@ -120,29 +120,34 @@ memoryRouter.route('/users').post((req, res) => {
   let pword = req.body.password;
   var query = User.findOne({ 'username': uname });
 
+  console.log(uname);
+  console.log(pword);
+
   // selecting the `name` and `occupation` fields
   query.select('username password');
 
   // execute the query at a later time
     query.exec(function (err, users) {
       if (err) return handleError(err);
-      
+
+      console.log(users);
+
       if(users != null){
-        console.log('found: ', users.username, users.password);
+        console.log('found: ', users);
         if(pword == users.password){
-          return res.json(users);
+          return res.json({ _id: users._id, username: users.username, status: 'valid'});
         }
         else{
-          return res.json({'message': 'Invalid username or password.'});
+          return res.json({ _id: "invalid", username: "invalid", status: 'invalid'});
         }
       }
       else{
         console.log('USER NOT FOUND');
-        return res.json({'message': 'Invalid username or password'});
+        return res.json({ _id: "invalid", username: "invalid", status: 'invalid'});
       }
       //console.log('found: ', users.username, users.password);
     });
- 
+
 });
 
 memoryRouter.route('/users/newuser').post((req, res) => {
@@ -158,7 +163,7 @@ memoryRouter.route('/users/newuser').post((req, res) => {
   // execute the query at a later time
     query.exec(function (err, users) {
       if (err) return handleError(err);
-      
+
       if(users != null){
           return res.json('User already exists.');
       }
@@ -176,11 +181,11 @@ memoryRouter.route('/users/newuser').post((req, res) => {
       }
       //console.log('found: ', users.username, users.password);
     });
- 
+
 });
 
 memoryRouter.route('/lists').get((req, res) => {
-  
+
   console.log(req.body);
 
   var query = List.find();
@@ -189,7 +194,7 @@ memoryRouter.route('/lists').get((req, res) => {
 
     query.exec(function (err, lists) {
       if (err) return handleError(err);
-      
+
       if(lists != null){
         return res.json(lists);
       }
@@ -201,7 +206,7 @@ memoryRouter.route('/lists').get((req, res) => {
 });
 
 memoryRouter.route('/lists/delete').post((req, res) => {
-  
+
   console.log(req.body);
 
   /*List.find({ _id: req.body.listID }).remove(
@@ -215,7 +220,7 @@ memoryRouter.route('/lists/delete').post((req, res) => {
     }
   );*/
 
-  List.findByIdAndDelete(req.body.listID, 
+  List.findByIdAndDelete(req.body.listID,
     function(err) {
       if(err){
         console.log(err);
@@ -229,7 +234,7 @@ memoryRouter.route('/lists/delete').post((req, res) => {
 });
 
 memoryRouter.route('/lists/items').post((req, res) => {
-  
+
   console.log(req.body);
 
   var query = List.find({ _id: req.body.id});
@@ -238,7 +243,7 @@ memoryRouter.route('/lists/items').post((req, res) => {
 
     query.exec(function (err, items) {
       if (err) return handleError(err);
-      
+
       if(items != null){
         return res.json(items);
       }
@@ -250,7 +255,7 @@ memoryRouter.route('/lists/items').post((req, res) => {
 });
 
 memoryRouter.route('/lists/items/delete').post((req, res) => {
-  
+
   console.log(req.body);
 
   List.findByIdAndUpdate(req.body.listID,
@@ -278,8 +283,8 @@ memoryRouter.route('/lists/newlist').post((req, res) => {
     if (err) return console.error(err);
     console.log(list.title + " saved to memories.");
     return res.json(list);
-  });  
- 
+  });
+
 });
 
 app.use(express.json());

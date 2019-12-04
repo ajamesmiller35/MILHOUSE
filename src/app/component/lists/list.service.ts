@@ -24,7 +24,6 @@ export class ListService {
 
   constructor(private http: HttpClient) { }
 
-  /** GET heroes from the server */
   getLists (): Observable<List[]> {
     return this.http.get<List[]>(this.getListsURL);
   }

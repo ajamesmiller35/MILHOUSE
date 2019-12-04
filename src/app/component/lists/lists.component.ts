@@ -37,7 +37,7 @@ export class ListsComponent implements OnInit {
 
     $.ajax({
       url: 'http://localhost:3000/api/lists/newlist',
-      data: { 
+      data: {
         title: title,
         items: items,
         creator: this.username
@@ -58,8 +58,14 @@ export class ListsComponent implements OnInit {
 
   getLists(): void{
 
-    this.listService.getLists().subscribe(lists => this.lists = lists);
-    
+    this.listService.getLists().subscribe(lists => {this.lists = lists;
+      for(let x = 0; x < this.lists.length; x++){
+        if(this.id == this.lists[x]._id){
+          this.items = this.lists[x].items;
+        }
+      }
+    });
+
   }
 
   deleteItem(item): void{
@@ -73,7 +79,14 @@ export class ListsComponent implements OnInit {
     this.listService.deleteList(listID).subscribe();
   }
 
+  checkStatus(){
+    if(!getCookie('userID')){
+      window.location.href = "/auth";
+    }
+  }
+
   ngOnInit() {
+    this.checkStatus();
     eraseContent();
     if(getCookie('userID')){
       this.username = getCookie('username');
