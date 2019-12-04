@@ -1,4 +1,6 @@
 export class List {
-    id: number;
-    name: string;
+    _id: string;
+    title: string;
+    items: Array<string>;
+    creator: string;
   }

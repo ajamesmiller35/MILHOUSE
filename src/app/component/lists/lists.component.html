@@ -34,19 +34,23 @@
         <div class="col-lg-6">
             <h2 class="text-white text-center syncopate">Lists:</h2>
             <ul id="list-list" class="lists">
-                <!--<li *ngFor="let list of lists">
-                  <a routerLink="/lists/{{list.id}}">
-                    <h3 class="text-white list-title syncopate">{{list.name}}</h3>
+                <li *ngFor="let list of lists">
+                  <a routerLink="/lists/{{list._id}}">
+                    <h3 class="text-white list-title syncopate">{{list.title}}</h3>
                   </a>
                   <button class="delete" title="delete list"
-                    (click)=delete(list.id)>x</button>
-                </li>-->
+                    (click)=deleteList(list,list._id)>x</button>
+                </li>
               </ul>
         </div>
         <div class="col-lg-6 grey">
             <h2 class="text-white text-center syncopate">Items:</h2>
-            <ul id="list-items">
+            <ul id="list-items" class="items">
               <!--<h3 class="text-white list-title syncopate">{{id}}</h3>-->
+              <li *ngFor="let item of items">
+                  <h3 class="text-white list-title syncopate">{{item}}</h3>
+                  <button class="delete" title="delete list" (click)=deleteItem(item)>x</button>
+              </li>
             </ul>
         </div>
     </div>

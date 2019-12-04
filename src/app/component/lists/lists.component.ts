@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import * as $ from 'jquery';
 import { getCookie } from '../../../assets/scripts/getCookie';
 import { eraseContent } from '../../../assets/scripts/eraseContent';
+import { ListService } from './list.service';
 
 @Component({
   selector: 'app-lists',
@@ -14,16 +15,13 @@ import { eraseContent } from '../../../assets/scripts/eraseContent';
 export class ListsComponent implements OnInit {
 
   lists: List[];
+  items: Array<string>;
   @Input()
   id: string;
   userID: string;
   username: string;
 
-  constructor(private route: ActivatedRoute) { }
-
-  delete(id){
-    console.log("DELETE: " + id);
-  }
+  constructor(private route: ActivatedRoute, private listService: ListService) { }
 
   addList(){
     let title = $('#new-list-title').html();
@@ -46,7 +44,9 @@ export class ListsComponent implements OnInit {
       },
       type: 'POST',
       accept: 'application/json',
-      success: function(){},
+      success: function(){
+        location.reload();
+      },
     });
   }
 
@@ -56,49 +56,21 @@ export class ListsComponent implements OnInit {
     $('.new-list-item-box').append(`<h6 contenteditable="true" style="padding-top:10px; padding-bottom:10px;" (click)="console.log('test')" class="new-list-item syncopate text-white" id="` + children + `">New List Items</h6>`);
   }
 
-  getLists(){
-    $.ajax({
-      url: 'http://localhost:3000/api/lists',
-      type: 'POST',
-      accept: 'application/json',
-      success: function(request){
-        console.log(request);
-        this.lists = request;
-        for(let x = 0; x < this.lists.length; x++){
-          $('#list-list').append(`
-          <li>
-            <a href="/lists/` + this.lists[x]._id + `">
-              <h3 class="text-white list-title syncopate">` + this.lists[x].title + `</h3>
-            </a>
-          </li>`);
-        }
-      },
-    });
+  getLists(): void{
+
+    this.listService.getLists().subscribe(lists => this.lists = lists);
+    
   }
 
-  getListItems(id){
-     
-    console.log('ID: ' + id);
-    if(id != null){
-      $.ajax({
-        url: 'http://localhost:3000/api/lists/items',
-        type: 'POST',
-        data: {
-          id: id
-        },
-        accept: 'application/json',
-        success: function(request){
-          console.log(request);
-          let items = request;
-          console.log(items[0].items);
-          let length = items[0].items.length;
-          for(let x = 0; x < length; x++){
-            $('#list-items').append(`<h3 class="text-white list-title syncopate">` + items[0].items[x] + `</h3>`);
-          }
-        },
-      });
-    }
-  
+  deleteItem(item): void{
+    console.log('ITEM TO DELETE: ' + item);
+    this.items = this.items.filter(l => l !== item);
+    this.listService.deleteItem(this.id, item).subscribe();
+  }
+
+  deleteList(list, listID): void{
+    this.lists = this.lists.filter(ln => ln !== list);
+    this.listService.deleteList(listID).subscribe();
   }
 
   ngOnInit() {
@@ -115,6 +87,17 @@ export class ListsComponent implements OnInit {
 
     this.route.params.subscribe(routeParams => {
       this.id = routeParams.id;
+      console.log('ROUTE CHANGED');
+      try{
+        for(let x = 0; x < this.lists.length; x++){
+          if(this.id == this.lists[x]._id){
+            this.items = this.lists[x].items;
+          }
+        }
+      }
+      catch{
+        console.log('length undefined');
+      }
 
       $('#add').on('click', function(){
         $('.add-list').css('display','block');
@@ -130,7 +113,7 @@ export class ListsComponent implements OnInit {
     });
 
     this.getLists();
-    this.getListItems(this.id);
+    //this.getListItems(this.id);
 
     /*var lists = new Array();
 

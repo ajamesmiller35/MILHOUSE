@@ -179,7 +179,7 @@ memoryRouter.route('/users/newuser').post((req, res) => {
  
 });
 
-memoryRouter.route('/lists').post((req, res) => {
+memoryRouter.route('/lists').get((req, res) => {
   
   console.log(req.body);
 
@@ -198,6 +198,34 @@ memoryRouter.route('/lists').post((req, res) => {
         return res.json({'message': 'No Lists Found'});
         }
       });
+});
+
+memoryRouter.route('/lists/delete').post((req, res) => {
+  
+  console.log(req.body);
+
+  /*List.find({ _id: req.body.listID }).remove(
+    function(err, doc) {
+      if(err){
+        console.log(err);
+        return res.json({message: "List could not be removed."});
+      }else{
+        return res.json({message: "List removed"});
+      }
+    }
+  );*/
+
+  List.findByIdAndDelete(req.body.listID, 
+    function(err) {
+      if(err){
+        console.log(err);
+        return res.json({message: "List could not be removed."});
+      }else{
+        return res.json({message: "List removed"});
+      }
+    }
+    );
+
 });
 
 memoryRouter.route('/lists/items').post((req, res) => {
@@ -219,6 +247,25 @@ memoryRouter.route('/lists/items').post((req, res) => {
         return res.json({'message': 'No Items Found'});
         }
       });
+});
+
+memoryRouter.route('/lists/items/delete').post((req, res) => {
+  
+  console.log(req.body);
+
+  List.findByIdAndUpdate(req.body.listID,
+    {$pull: {items: req.body.item}},
+    {safe: true, upsert: true},
+    function(err, doc) {
+      if(err){
+        console.log(err);
+        return res.json({message: "Item could not be removed."});
+      }else{
+        return res.json({message: "Item removed"});
+      }
+    }
+    );
+
 });
 
 memoryRouter.route('/lists/newlist').post((req, res) => {
