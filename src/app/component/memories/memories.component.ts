@@ -19,11 +19,12 @@ export class MemoriesComponent implements OnInit {
   selectedFile: File = null;
   fileName: string = '';
 
+  //makes "+" button function as file input when clicked
   triggerInput(){
-    console.log('CLICKED');
     $('#upload-input').trigger('click');
   }
 
+  //uploads file after it has been selected and updates photo on edit screen
   onFileSelected(event){
     this.selectedFile = <File>event.target.files[0];
     console.log(this.selectedFile);
@@ -39,6 +40,7 @@ export class MemoriesComponent implements OnInit {
       });
   }
 
+  //adds memory to database
   addMemory() {
     let creator = this.username;
     let title = $('#nm-title').html();
@@ -77,10 +79,7 @@ export class MemoriesComponent implements OnInit {
 
   }
 
-  getLargest(){
-
-  }
-
+  //gets memories from database three at a time and prints to screen
   getMemories(){
 
     if(count == null){
@@ -152,6 +151,7 @@ export class MemoriesComponent implements OnInit {
 
     }
 
+    //check if user is authenticated. if not reroute to auth page
     checkStatus(){
       if(!getCookie('userID')){
         window.location.href = "/auth";

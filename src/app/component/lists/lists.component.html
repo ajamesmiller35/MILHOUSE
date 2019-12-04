@@ -32,26 +32,33 @@
 
     <div class="row">
         <div class="col-lg-6">
+          <div class="list-box">
             <h2 class="text-white text-center syncopate">Lists:</h2>
             <ul id="list-list" class="lists">
-                <li *ngFor="let list of lists">
-                  <a routerLink="/lists/{{list._id}}">
+                <li id="{{list._id}}" *ngFor="let list of lists">
+                  <a routerLink="/lists/{{list._id}}/{{list.title}}">
                     <h3 class="text-white list-title syncopate">{{list.title}}</h3>
                   </a>
                   <button class="delete" title="delete list"
                     (click)=deleteList(list,list._id)>x</button>
                 </li>
               </ul>
+            </div><!--list-box-->
         </div>
-        <div class="col-lg-6 grey">
-            <h2 class="text-white text-center syncopate">Items:</h2>
+        <div class="col-lg-6 list-item-col">
+          <div class="list-item-box">
+            <h4 id="save-warning">Changes have not been saved.</h4>
+            <h2 class="text-white text-center syncopate">{{this.title}}</h2>
             <ul id="list-items" class="items">
               <!--<h3 class="text-white list-title syncopate">{{id}}</h3>-->
               <li *ngFor="let item of items">
-                  <h3 class="text-white list-title syncopate">{{item}}</h3>
+                  <h3 contenteditable="true" class="text-white list-title item-title syncopate">{{item}}</h3>
                   <button class="delete" title="delete list" (click)=deleteItem(item)>x</button>
               </li>
             </ul>
+            <button (click)="appendNextItem()" class="btn" id="add-item-button2"><p id="plus">+</p></button>
+            <button (click)="saveItemChanges()" class="btn" id="save-item-changes"><p id="save">Save</p></button>
+          </div><!--list-item-box-->
         </div>
     </div>
 </div>

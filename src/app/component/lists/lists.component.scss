@@ -7,7 +7,8 @@
 }
 
 .list-title{
-    display: inline !important;
+    display: inline-block !important;
+    width: 80%;
 }
 
 li{
@@ -65,17 +66,50 @@ li{
   width: 100px;
   background-color: darkslategrey;
   color: white;
-  margin-left: auto;
-  margin-right: auto;
   display: block;
-  margin-top: 25px;
-  margin-bottom: 25px;
   position: absolute;
   bottom: 0px;
+  margin-bottom: 25px;
+}
+
+#add-item-button2{
+  width: 100px;
+  background-color: darkslategrey;
+  color: white;
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 25px;
+}
+
+#save-item-changes{
+  width: 100px;
+  background-color: darkslategrey;
+  color: white;
+  display: none;
+  position: absolute;
+  bottom: 0px;
+  right: 50px;
+  margin-bottom: 25px;
+  height: 62px;
+}
+
+.list-box{
+  padding: 25px;
+}
+
+ul{
+  list-style: none;
 }
 
 #plus{
   font-size: 2em;
+  color: white;
+  margin-bottom: 0px;
+}
+
+#save{
+  font-size: 1.5em;
   color: white;
   margin-bottom: 0px;
 }
@@ -85,6 +119,32 @@ li{
   background-color: #191221;
   min-height: 250px;
   padding-bottom: 95px;
+  padding-top: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.list-item-box{
+  width: 100%;
+  background-color: #191221;
+  min-height: 250px;
+  padding-bottom: 95px;
+  padding-top: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.list-item-col{
+  margin-bottom: 100px;
+}
+
+.list-item-box-edit{
+  background-color: gray !important;
+}
+
+#save-warning{
+  color: red;
+  display: none;
 }
 
 .new-list-item{
@@ -100,3 +160,5 @@ li{
   text-align: right;
   padding-right: 15px;
 }
+
+

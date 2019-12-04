@@ -18,11 +18,13 @@ export class ListsComponent implements OnInit {
   items: Array<string>;
   @Input()
   id: string;
+  title: string;
   userID: string;
   username: string;
 
   constructor(private route: ActivatedRoute, private listService: ListService) { }
 
+  //adds list to database
   addList(){
     let title = $('#new-list-title').html();
     let children = document.getElementById("nlib").childElementCount - 1;
@@ -50,14 +52,33 @@ export class ListsComponent implements OnInit {
     });
   }
 
+  //adds an additional contenteditable field allowing user to add another list item when adding a new list
   appendNext(){
     let children = document.getElementById("nlib").childElementCount;
     console.log(children);
     $('.new-list-item-box').append(`<h6 contenteditable="true" style="padding-top:10px; padding-bottom:10px;" (click)="console.log('test')" class="new-list-item syncopate text-white" id="` + children + `">New List Items</h6>`);
   }
 
-  getLists(): void{
+  //adds an additional contenteditable field allowing user to add another list item when editing a list
+  appendNextItem() {
+    this.items.push('New Item');
+  }
 
+  //saves changes to a list made when editing
+  saveItemChanges() {
+    console.log(this.items);
+    let newItems = Array();
+    let x = 0;
+    $('.item-title').each(function(){
+      newItems[x] = this.innerHTML;
+      x++;
+    });
+    this.items = newItems;
+    this.listService.updateList(this.id, this.items).subscribe(items => {location.reload()});
+  }
+
+  //retrieves all lists from the database and sets items
+  getLists(): void{
     this.listService.getLists().subscribe(lists => {this.lists = lists;
       for(let x = 0; x < this.lists.length; x++){
         if(this.id == this.lists[x]._id){
@@ -68,17 +89,20 @@ export class ListsComponent implements OnInit {
 
   }
 
+  //deletes item from database
   deleteItem(item): void{
     console.log('ITEM TO DELETE: ' + item);
     this.items = this.items.filter(l => l !== item);
     this.listService.deleteItem(this.id, item).subscribe();
   }
 
+  //deletes entire list from database
   deleteList(list, listID): void{
     this.lists = this.lists.filter(ln => ln !== list);
     this.listService.deleteList(listID).subscribe();
   }
 
+  //checks if user is authenticated. if not, redirects to auth page.
   checkStatus(){
     if(!getCookie('userID')){
       window.location.href = "/auth";
@@ -86,21 +110,22 @@ export class ListsComponent implements OnInit {
   }
 
   ngOnInit() {
+    //checks login status
     this.checkStatus();
+
+    //automatically deletes contents of contenteditable fields when they are clicked
     eraseContent();
+
+    //checks if cookies are set, sets username and id variables from cookies
     if(getCookie('userID')){
       this.username = getCookie('username');
       this.userID = getCookie('userID');
     }
 
-    const routeParams = this.route.snapshot.params;
-
-    //console.log(queryParams);
-    console.log(routeParams);
-
+    //sets list items from currently selected list
     this.route.params.subscribe(routeParams => {
       this.id = routeParams.id;
-      console.log('ROUTE CHANGED');
+      this.title = routeParams.title;
       try{
         for(let x = 0; x < this.lists.length; x++){
           if(this.id == this.lists[x]._id){
@@ -108,9 +133,7 @@ export class ListsComponent implements OnInit {
           }
         }
       }
-      catch{
-        console.log('length undefined');
-      }
+      catch{ }
 
       $('#add').on('click', function(){
         $('.add-list').css('display','block');
@@ -126,20 +149,6 @@ export class ListsComponent implements OnInit {
     });
 
     this.getLists();
-    //this.getListItems(this.id);
-
-    /*var lists = new Array();
-
-    lists.push({'id': 1, 'name': 'Groceries'});
-    lists.push({'id': 2, 'name': 'Hardware'});
-    lists.push({'id': 3, 'name': 'Pharmacy'});
-
-    console.log(lists);
-    this.lists = lists;
-    */
-    //this.id = this.route.snapshot.paramMap.get('id');
-
-    //const queryParams = this.route.snapshot.queryParams;
 
   }
 

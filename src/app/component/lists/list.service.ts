@@ -17,6 +17,7 @@ export class ListService {
   private getListsURL = 'http://localhost:3000/api/lists';  // URL to web api
   private deleteItemURL = 'http://localhost:3000/api/lists/items/delete';
   private deleteListURL = 'http://localhost:3000/api/lists/delete';
+  private updateListURL = 'http://localhost:3000/api/lists/update';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -34,6 +35,10 @@ export class ListService {
 
   deleteList (listID: string): Observable<string> {
       return this.http.post<string>(this.deleteListURL, {listID: listID}, httpOptions);
+  }
+
+  updateList (listID: string, list: Array<string>): Observable<Array<string>> {
+    return this.http.post<Array<string>>(this.updateListURL, {listID: listID, list: list}, httpOptions);
   }
 
 }

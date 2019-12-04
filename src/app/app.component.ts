@@ -14,6 +14,7 @@ export class AppComponent {
 
   constructor(private _location: Location) {}
 
+  //allows back button to function
   goBack() {
     this._location.back();
   }

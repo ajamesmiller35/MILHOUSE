@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'new-account', component: NewAccountComponent},
   { path: 'memories', component: MemoriesComponent },
   { path: 'lists', component: ListsComponent },
-  { path: 'lists/:id', component: ListsComponent },
+  { path: 'lists/:id/:title', component: ListsComponent },
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: '**', component: ErrorComponent }
 ];

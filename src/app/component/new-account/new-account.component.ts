@@ -11,6 +11,7 @@ export class NewAccountComponent implements OnInit {
 
   constructor() { }
 
+  //adds new account to database and logs user in
   newAccount(username: string, password: string, password2: string){
 
     if(password !== password2){
@@ -42,14 +43,14 @@ export class NewAccountComponent implements OnInit {
             $('#bad-login').html('Server Error!');
             $('#bad-login').css('display', 'block');
           }
-          
+
         },
         error: function(){
-          
-        } 
+
+        }
       });
     }
-    
+
   }
 
   ngOnInit() {
