@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 
+console.log(__dirname);
 
 const url = 'mongodb://localhost:27017/MILHOUSE';
 const db = mongoose.connect(url);
@@ -17,6 +18,8 @@ const List = require('./listModel');
 
 app.use(cors());
 app.use(fileUpload());
+
+app.use('/images', express.static(__dirname + '/images'));
 
 //Handles upload of image files
 memoryRouter.route('/upload').post((req, res) => {
@@ -30,7 +33,7 @@ memoryRouter.route('/upload').post((req, res) => {
   let image = req.files.image;
 
   //path to save image files to
-  let path = '../src/assets/images/' + image.name;
+  let path = './images/' + image.name;
 
   image.mv(path, function(err) {
     if (err)
@@ -168,7 +171,7 @@ memoryRouter.route('/users/newuser').post((req, res) => {
         console.log(newUser);
         newUser.save(function (err, user) {
           if (err) return console.error(err);
-          console.log(user.username + " saved to memories.");
+          console.log(user.username + " added.");
           return res.json(user);
         });
       }

@@ -40,7 +40,7 @@ export class NewAccountComponent implements OnInit {
             window.location.href="/memories";
           }
           else{
-            $('#bad-login').html('Server Error!');
+            $('#bad-login').html('User may already exist. Try a different username');
             $('#bad-login').css('display', 'block');
           }
 

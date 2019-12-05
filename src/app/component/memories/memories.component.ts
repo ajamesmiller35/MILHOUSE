@@ -35,7 +35,9 @@ export class MemoriesComponent implements OnInit {
       .subscribe(res => {
         console.log('UPLOADED');
         $('.add-img-box').css('display', 'none');
-        $('.new-image').css('background-image', 'url(../../../assets/images/' + this.fileName + ')');
+        $('.new-image').css('background-image', 'url(http://localhost:3000/images/' + this.fileName + ')');
+        $('.new-image').css('background-repeat', 'no-repeat');
+        $('.new-image').css('background-size', 'contain');
         $('.new-image').css('display', 'block');
       });
   }
@@ -107,7 +109,7 @@ export class MemoriesComponent implements OnInit {
             </div><!--memory-title-box-->
               <div class="row">
                 <div class="col-lg-6">
-                  <img class="memory-img" style="width: 100%;" src="../../../assets/images/` + this.memories[x].img + `" alt="">
+                  <img class="memory-img" style="width: 100%;" src="http://localhost:3000/images/` + this.memories[x].img + `" alt="">
                 </div><!--col-lg-6-->
                 <div class="col-lg-6">
                   <p class="text-white">` + this.memories[x].description + `</p>
@@ -136,7 +138,7 @@ export class MemoriesComponent implements OnInit {
           </div><!--memory-title-box-->
             <div class="row">
               <div class="col-lg-6">
-                <img class="memory-img" style="width: 100%;" src="../../../assets/images/` + this.memories[x].img + `" alt="">
+                <img class="memory-img" style="width: 100%;" src="http://localhost:3000/images/` + this.memories[x].img + `" alt="">
               </div><!--col-lg-6-->
               <div class="col-lg-6">
                 <p class="text-white">` + this.memories[x].description + `</p>
