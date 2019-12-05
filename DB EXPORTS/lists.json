@@ -1,0 +1,4 @@
+{"_id":{"$oid":"5de5d3d69415cf6184db9d51"},"items":["Jennifer Gift","Carlisle Gift","Gift for GMA","Gift for Kay"],"title":"Christmas","creator":"carlisle","__v":0}
+{"_id":{"$oid":"5de5d3f29415cf6184db9d52"},"items":["Wings","Cheese","Salami","Crackers"],"title":"Groceries","creator":"carlisle","__v":0}
+{"_id":{"$oid":"5de7506befe3786bb8898edb"},"items":["Item 1","Item 2","Item 3"],"title":"Denver","creator":"andrew","__v":0}
+{"_id":{"$oid":"5de750beefe3786bb8898edc"},"items":["Item 1","Item 2","Item 3"],"title":"Pharmacy","creator":"andrew","__v":0}

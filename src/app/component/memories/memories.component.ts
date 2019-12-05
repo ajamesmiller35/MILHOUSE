@@ -161,6 +161,7 @@ export class MemoriesComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    count = null;
 
     this.checkStatus();
 
