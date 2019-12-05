@@ -98,7 +98,11 @@ memoryRouter.route('/memories/add').post((req, res) => {
 
   newMemory.save(function (err, memory) {
     if (err) return console.error(err);
-    console.log(memory.title + " saved to memories.");
+    else{
+      console.log(memory.title + " saved to memories.");
+      return res.json({message: 'Memory added.'});
+    }
+    
   });
 
 });

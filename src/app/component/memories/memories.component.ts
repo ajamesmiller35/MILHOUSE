@@ -72,7 +72,7 @@ export class MemoriesComponent implements OnInit {
         },
         accept: 'application/json',
         success: function(request){
-          console.log('SUCCESS');
+          location.reload();
         }
       });
     });
